@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projeto Básico | HTML + CSS + JS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="container">
+    <h1>Olá, GitHub Pages! 🚀</h1>
+    <p>Este é um projeto básico com HTML, CSS e JavaScript para demonstrar um pipeline CI/CD no GitHub Actions.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Interatividade</h2>
+      <p>Clique no botão para ver a magia acontecer:</p>
+      <button id="btnCumprimentar" class="btn">Cumprimentar</button>
+      <p id="mensagem" class="mensagem" aria-live="polite"></p>
+    </section>
+
+    <section class="card">
+      <h2>Status do Build</h2>
+      <p>Quando você fizer um push para a branch <code>main</code>, o GitHub Actions irá construir e publicar automaticamente este site no GitHub Pages.</p>
+      <p>Você também pode rodar o workflow manualmente na aba <em>Actions</em>.</p>
+    </section>
+  </main>
+
+  <footer class="container rodape">
+    <small>Feito com ❤️ para demonstrar CI/CD — <a href="https://github.com/features/actions" target="_blank" rel="noopener">GitHub Actions</a></small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+:root {
+  --bg: #0f172a;        /* slate-900 */
+  --panel: #111827;     /* gray-900 */
+  --text: #e5e7eb;      /* gray-200 */
+  --muted: #94a3b8;     /* slate-400 */
+  --brand: #06b6d4;     /* cyan-500 */
+  --brand-2: #22d3ee;   /* cyan-400 */
+  --accent: #10b981;    /* emerald-500 */
+  --shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 800px at 10% 10%, #0b1324, var(--bg));
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+header h1 {
+  margin: 0 0 .25rem;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+header p {
+  margin: 0;
+  color: var(--muted);
+}
+
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem; margin-top: 1rem;
+}
+
+.card { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px; padding: 1rem 1.2rem;
+  box-shadow: var(--shadow); backdrop-filter: blur(6px);
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  color: var(--brand-2);
+}
+
+.btn {
+  appearance: none;
+  border: 0; background: linear-gradient(90deg, var(--brand), var(--accent));
+  color: #041317; font-weight: 700;
+  padding: .7rem 1rem; border-radius: 10px;
+  cursor: pointer; box-shadow: 0 6px 20px rgba(6, 182, 212, .35);
+  transition: transform .08s ease-out, filter .2s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(.99);
+}
+
+.mensagem { min-height: 1.5em;
+  color: var(--brand-2);
+  font-weight: 600; margin-top: .5rem;
+}
+
+.rodape { margin-top: 2rem;
+  color: var(--muted);
+  border-top: 1px dashed rgba(255,255,255,0.08);
+}
+
+.rodape a {
+  color: var(--brand-2);
+}

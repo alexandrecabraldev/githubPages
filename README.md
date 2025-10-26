@@ -11,7 +11,7 @@ Este repositório contém um site estático simples e um pipeline de CI/CD usand
 ## Como usar
 1. Crie um repositório no GitHub e envie estes arquivos (git init, commit e push para a branch `main`).
 2. Verifique se a branch padrão do repositório é `main` (ou ajuste o workflow).
-3. Vá em Settings → Pages e selecione "Deploy from a branch" com a origem como "GitHub Actions".
+3. Em Settings → Pages, em "Build and deployment", defina "Source: GitHub Actions" para habilitar o Pages a aceitar deploy via Actions (evita erro 404 na etapa de deploy).
 4. Vá em Actions e verifique se o workflow "Deploy GitHub Pages" executou com sucesso após o push. Ele fará o deploy para o GitHub Pages.
 
 A URL final ficará como:

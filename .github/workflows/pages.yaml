@@ -9,7 +9,6 @@ permissions:
   pages: write
   id-token: write
 
-# Avoid concurrent deployments overriding each other
 concurrency:
   group: "pages"
   cancel-in-progress: true
@@ -27,13 +26,11 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
         with:
-          # Automatically create/enable the Pages site for this repo
           enablement: true
 
       - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload everything in the repository root (HTML, CSS, JS)
           path: .
 
       - name: Deploy to GitHub Pages

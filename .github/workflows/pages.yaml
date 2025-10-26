@@ -1,5 +1,4 @@
 name: Deploy GitHub Pages
-
 on:
   push:
     branches: [ "main" ]
@@ -27,11 +26,14 @@ jobs:
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          # Automatically create/enable the Pages site for this repo
+          enablement: true
 
       - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload everything in the repository root. Adjust if you build to another folder.
+          # Upload everything in the repository root (HTML, CSS, JS)
           path: .
 
       - name: Deploy to GitHub Pages

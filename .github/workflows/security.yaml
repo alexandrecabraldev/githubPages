@@ -20,7 +20,7 @@ jobs:
           echo "🔍 Executando SAST..."
           echo "Verificando arquivos HTML, CSS e JS..."
           # Procura por códigos inseguros comuns
-          if grep -r -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" .; then
+          if grep -r -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" . --exclude-dir=.github; then
             echo "⚠️ Possível risco de segurança encontrado!"
             exit 1
           else

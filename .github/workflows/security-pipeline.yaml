@@ -1,0 +1,54 @@
+name: Security Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  SAST:
+    name: Static Analysis (SAST)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run SAST checks
+        run: |
+          echo "🔍 Executando SAST..."
+          echo "Verificando arquivos HTML, CSS e JS..."
+          # Procura por códigos inseguros comuns
+          if grep -r -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" .; then
+            echo "⚠️ Possível risco de segurança encontrado!"
+            exit 1
+          else
+            echo "✅ Nenhum problema detectado no código estático."
+          fi
+
+  DAST:
+    name: Dynamic Analysis (DAST)
+    runs-on: ubuntu-latest
+    needs: SAST  # Só roda se o SAST passar
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Start local server
+        run: |
+          echo "🚀 Iniciando servidor local..."
+          python3 -m http.server 8080 &
+          sleep 5
+
+      - name: Run DAST checks
+        run: |
+          echo "🌐 Executando DAST..."
+          STATUS=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:8080)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "✅ Aplicação respondeu com sucesso (HTTP 200)"
+          else
+            echo "❌ Falha ao acessar aplicação (status: $STATUS)"
+            exit 1
+          fi

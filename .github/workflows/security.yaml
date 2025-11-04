@@ -19,13 +19,18 @@ jobs:
         run: |
           echo "🔍 Executando SAST..."
           echo "Verificando arquivos HTML, CSS e JS..."
-          # Busca apenas nos arquivos do projeto, ignorando .github e node_modules
-          FOUND=$(grep -r -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" \
-            --exclude-dir=.github --exclude-dir=node_modules . || true)
-          
+
+          # Busca apenas arquivos HTML, CSS e JS
+          FILES=$(find . -type f \( -name "*.html" -o -name "*.css" -o -name "*.js" \))
+          FOUND=""
+          for f in $FILES; do
+            if grep -q -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" "$f"; then
+              FOUND="$FOUND\n⚠️ $f contém possíveis riscos"
+            fi
+          done
+
           if [ -n "$FOUND" ]; then
-            echo "⚠️ Possível risco de segurança encontrado!"
-            echo "$FOUND"
+            echo -e "$FOUND"
             exit 1
           else
             echo "✅ Nenhum problema detectado no código estático."

@@ -25,7 +25,7 @@ jobs:
           FOUND=""
           for f in $FILES; do
             if grep -q -E "(eval\(|innerHTML|document\.write|localStorage\.setItem)" "$f"; then
-              FOUND="$FOUND\n⚠️ $f contém possíveis riscos"
+              FOUND="$FOUND\n $f contém possíveis riscos"
             fi
           done
 
@@ -33,7 +33,7 @@ jobs:
             echo -e "$FOUND"
             exit 1
           else
-            echo "✅ Nenhum problema detectado no código estático."
+            echo "Nenhum problema detectado no código estático."
           fi
 
   DAST:
@@ -56,8 +56,8 @@ jobs:
           echo "🌐 Executando DAST..."
           STATUS=$(curl -o /dev/null -s -w "%{http_code}" http://localhost:8080)
           if [ "$STATUS" -eq 200 ]; then
-            echo "✅ Aplicação respondeu com sucesso (HTTP 200)"
+            echo "Aplicação respondeu com sucesso (HTTP 200)"
           else
-            echo "❌ Falha ao acessar aplicação (status: $STATUS)"
+            echo "Falha ao acessar aplicação (status: $STATUS)"
             exit 1
           fi
